@@ -1,0 +1,97 @@
+version: '3.8'
+
+services:
+  # CRM Service
+  crm:
+    build:
+      context: ./services/crm
+      dockerfile: Dockerfile
+    ports:
+      - "8001:80"
+    volumes:
+      - ./services/crm:/var/www/html
+    depends_on:
+      - crm_db
+    environment:
+      DB_CONNECTION: pgsql
+      DB_HOST: crm_db
+      DB_PORT: 5432
+      DB_DATABASE: crm
+      DB_USERNAME: user
+      DB_PASSWORD: password
+
+  crm_db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: crm
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - crm_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5431:5432"
+
+  # E-commerce Service
+  ecommerce:
+    build:
+      context: ./services/ecommerce
+      dockerfile: Dockerfile
+    ports:
+      - "8002:80"
+    volumes:
+      - ./services/ecommerce:/var/www/html
+    depends_on:
+      - ecommerce_db
+    environment:
+      DB_CONNECTION: pgsql
+      DB_HOST: ecommerce_db
+      DB_PORT: 5432
+      DB_DATABASE: ecommerce
+      DB_USERNAME: user
+      DB_PASSWORD: password
+
+  ecommerce_db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ecommerce
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ecommerce_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  # ERP Service
+  erp:
+    build:
+      context: ./services/erp
+      dockerfile: Dockerfile
+    ports:
+      - "8003:80"
+    volumes:
+      - ./services/erp:/var/www/html
+    depends_on:
+      - erp_db
+    environment:
+      DB_CONNECTION: pgsql
+      DB_HOST: erp_db
+      DB_PORT: 5432
+      DB_DATABASE: erp
+      DB_USERNAME: user
+      DB_PASSWORD: password
+
+  erp_db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: erp
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - erp_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+volumes:
+  crm_postgres_data:
+  ecommerce_postgres_data:
+  erp_postgres_data:

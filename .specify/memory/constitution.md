@@ -1,50 +1,61 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+    Sync Impact Report:
+    - Version change: 1.2.0 -> 2.0.0
+    - Changed sections: Quality and Development Standards
+    - Rationale: Increased test coverage to 100% and mandated a formal TDD process. This is a backward-incompatible change to the development workflow.
+-->
+# Project Constitution
 
-## Core Principles
+**Version**: 2.0.0  
+**Ratification Date**: 2025-10-20  
+**Last Amended**: 2025-10-20  
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+This document outlines the foundational principles and mandatory technical standards for the project. All development, whether human or AI-assisted, must adhere to these rules.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+## 1. Core Principles
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+- **Clarity for Junior Developers**: All code, documentation, and specifications must be clear, actionable, and suitable for a junior developer to understand and implement.
+- **Single Source of Truth (SSoT)**: Every critical piece of data must have a single, authoritative service that owns it.
+- **Service-Oriented Architecture (SOA)**: The project is composed of independent, decoupled services that communicate exclusively through well-defined, versioned, ReSTful APIs.
+- **Domain-Driven Design (DDD)**: Services shall be designed around specific business domains with clear boundaries and responsibilities.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+## 2. Architecture Mandates
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+- **Services**: The project shall consist of three core services: a CRM, an ERP, and an E-commerce platform.
+- **Monorepo Structure**: The codebase for all services will be managed within a single monorepo, but each service must remain a separate, independent application.
+- **Database Isolation**: Each service MUST have its own dedicated, isolated PostgreSQL database instance.
+- **Containerization**: The entire development and production environment MUST be managed via containerization, using Laravel Sail with Podman and `podman-compose`.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## 3. Technology Stack
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- **Backend Framework**: Laravel 12.x
+- **Frontend Framework**: Livewire (Volt) & Filament 4.x
+- **Database**: PostgreSQL 16+
+- **PHP Version**: PHP 8.4+
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## 4. Quality and Development Standards
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- **Test-Driven Development (TDD)**: All code MUST be developed using a strict TDD workflow. A comprehensive test plan must be created and approved before any implementation begins.
+- **100% Test Coverage**: All new code MUST achieve 100% test coverage. No exceptions.
+- **Testing Framework**: All tests MUST be written using pure Pest syntax.
+- **100% Type Safety**: All PHP code MUST be strictly typed. `declare(strict_types=1);` is mandatory in all PHP files.
+- **Static Analysis**: All PHP code must pass PHPStan Level 10 analysis.
+- **Code Style**: All code must adhere to the PSR-12 standard, enforced automatically by Laravel Pint.
+- **Version Control**: All commit messages MUST follow the Conventional Commits specification. The branching model will be GitHub Flow.
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+## 5. Security, Performance, and Documentation
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+- **Security**: All security standards defined in the previous version remain in effect (Authentication, Data Protection, Input Validation, API Security).
+- **Performance**: All performance standards defined in the previous version remain in effect (N+1 Prevention, Caching, Asset Optimization, Background Jobs).
+- **Documentation**: All documentation standards defined in the previous version remain in effect (Accessibility, Formatting, Link Integrity, Mermaid Diagrams).
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+## 6. AI & Human Collaboration Model
+
+- **AI Role**: The AI assistant acts as a senior technical advisor, responsible for generating work in accordance with this constitution, including the creation of test plans prior to implementation.
+- **Human Role**: The user acts as the project owner and final decision-maker, responsible for providing requirements, approving test plans, and approving all AI-generated work.
+
+## 7. Governance
+
+- **Amendment Process**: Amendments can be proposed via a pull request and must be approved by the project owner.
+- **Versioning**: This constitution follows Semantic Versioning 2.0.0.
+- **Compliance**: All work must comply with the constitution version active at the time of its creation.

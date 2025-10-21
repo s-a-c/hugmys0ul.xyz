@@ -1,0 +1,114 @@
+openapi: 3.0.0
+info:
+  title: ERP Service API
+  version: v1
+  description: API for managing customers and orders in the ERP service.
+security:
+  - bearerAuth: []
+paths:
+  /api/v1/customers:
+    post:
+      summary: Create or Update Customer
+      description: Receives customer data from the CRM.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: Customer updated successfully.
+        '201':
+          description: Customer created successfully.
+        '422':
+          description: Unprocessable Entity (Validation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/v1/orders:
+    post:
+      summary: Create Sales Order
+      description: Receives a new sales order from the E-commerce service to begin fulfillment.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: Order created successfully.
+        '422':
+          description: Unprocessable Entity (Validation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: ulid
+        full_name:
+          type: string
+          maxLength: 255
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        shipping_address:
+          type: string
+        billing_address:
+          type: string
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+          format: ulid
+        customer_id:
+          type: string
+          format: ulid
+        order_date:
+          type: string
+          format: date-time
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              sku:
+                type: string
+                maxLength: 255
+              quantity:
+                type: integer
+              price:
+                type: number
+                format: float
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                example: "422"
+              title:
+                type: string
+                example: "Unprocessable Entity"
+              detail:
+                type: string
+                example: "The 'items' field is required."
