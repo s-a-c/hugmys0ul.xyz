@@ -28,7 +28,7 @@ This is a comprehensive, open-source application built on Laravel 12.x and Filam
 
 Plugins are organized under `/plugins/webkul/` with each plugin representing a business domain:
 
-```
+```text
 plugins/webkul/{module}/
 ├── composer.json          ← Composer package definition
 ├── src/
@@ -104,6 +104,7 @@ composer dev
 ```
 
 This runs:
+
 - Laravel development server
 - Queue worker for background jobs
 - Real-time log monitoring
@@ -215,6 +216,7 @@ This runs:
 ## 14. See Also
 
 ### Related Guidelines
+
 - **[Development Standards](020-development-standards.md)** - Code quality and architecture patterns
 - **[Security Standards](040-security-standards.md)** - Comprehensive security implementation guide
 - **[Testing Standards](030-testing-standards.md)** - Testing requirements for plugins
@@ -223,18 +225,21 @@ This runs:
 ### Quick Decision Guide for New Developers
 
 #### "I need to create a new plugin - where do I start?"
+
 1. **First**: Review this project overview to understand the architecture
 2. **Then**: Check [Development Standards](020-development-standards.md) for coding patterns
 3. **Next**: Follow [Testing Standards](030-testing-standards.md) for test implementation
 4. **Finally**: Document using [Documentation Standards](../Documentation/010-documentation-standards.md)
 
 #### "I need to understand the technology stack"
+
 - **Laravel 12**: See [Development Standards](020-development-standards.md) section 3.4
 - **FilamentPHP 3**: Review section 4 above and [Development Standards](020-development-standards.md) section 3.2.3
 - **Security**: See [Security Standards](040-security-standards.md) for comprehensive security implementation
 - **Performance**: See [Performance Standards](050-performance-standards.md) for optimization techniques
 
 #### "I need to work with existing plugins"
+
 - **Plugin Structure**: Review section 3.2 above for directory organization
 - **Business Plugins**: See section 3.3.2 for available business domains
 - **Testing**: Use [Comprehensive Testing Guide](060-testing-comprehensive/000-index.md) for plugin-specific testing approaches

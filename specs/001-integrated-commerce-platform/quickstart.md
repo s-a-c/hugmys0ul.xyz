@@ -9,7 +9,7 @@ This guide provides the initial steps for setting up the project structure and s
 
 Create the following directory structure at the root of the repository:
 
-```
+```text
 /
 └── services/
     ├── crm/
@@ -56,6 +56,7 @@ volumes:
   ecommerce_postgres_data:
   erp_postgres_data:
 ```
+
 *(Note: This is a template. Final `Dockerfile` and environment configurations will be created during implementation.)*
 
 ## 3. Service Installation

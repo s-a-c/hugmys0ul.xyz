@@ -1,0 +1,37 @@
+{
+  // hugmys0ul.xyz markdownlint base config
+  // No MDX files detected; if .mdx is added later, consider adding the "markdownlint-mdx" custom rules.
+  "default": true,
+
+  // Headings
+  "MD003": { "style": "atx" },                         // Consistent ATX-style headings (#)
+  "MD018": true,                                       // Require a space after heading markers
+  "MD024": { "allow_different_nesting": true },        // Allow duplicate headings if nesting differs
+  "MD025": false,                                      // Allow multiple H1s across docs (reduce churn)
+  "MD026": { "punctuation": ".,;:!。，；：！?" },        // Allow common punctuation in headings
+  "MD041": false,                                      // Do not require first line to be a heading
+
+  // Lists
+  "MD004": { "style": "dash" },                        // Use "-" for unordered list markers
+  "MD007": { "indent": 2 },                            // 2-space indent for nested lists
+  "MD029": { "style": "ordered" },                     // Preserve explicit ordered numbering (1/2/3)
+  "MD030": { "style": "consistent" },                  // Consistent spacing after list markers
+
+  // Spacing / Line length / Blank lines
+  "MD009": { "br_spaces": 2, "strict": false },       // Preserve two-space hard line breaks; otherwise trim trailing spaces
+  "MD010": { "code_blocks": false },                  // Disallow tabs except inside fenced code blocks
+  "MD012": { "maximum": 1 },                          // Collapse multiple blank lines
+  "MD013": {                                          // Further relax to avoid mass reflows
+    "line_length": 500,
+    "ignore_code_blocks": true,
+    "ignore_tables": true,
+    "ignore_urls": true
+  },
+
+  // Code blocks
+  "MD033": false,                                      // Allow inline HTML to avoid disrupting badges/layout
+  "MD035": { "style": "---" },                         // Consistent thematic break
+  "MD040": true,                                       // Fenced code blocks should have a language hint
+  "MD046": { "style": "fenced" },                      // Prefer fenced code blocks over indented
+  "MD048": { "style": "backtick" }                     // Prefer backticks for fenced code blocks
+}

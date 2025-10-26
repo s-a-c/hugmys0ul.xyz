@@ -11,7 +11,7 @@
 
 ## 2. Per-Task TDD Workflow
 
-*(To be verified for each implementation task)*
+> Note: To be verified for each implementation task.
 
 - [ ] CHK003 - Was a failing test written *before* the corresponding implementation code? [Methodology, TDD]
 - [ ] CHK004 - Does the implementation code exist only to make the corresponding test pass? [Methodology, TDD]
@@ -19,7 +19,7 @@
 
 ## 3. Per-Task Quality & Constitutional Compliance
 
-*(To be verified for each completed task)*
+> Note: To be verified for each completed task.
 
 - [ ] CHK006 - Does all new and modified PHP code pass PHPStan Level 10 analysis? [Compliance, Constitution §4]
 - [ ] CHK007 - Has the `composer pint` command been run to enforce PSR-12 code style on all changed files? [Compliance, Constitution §4]

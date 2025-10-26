@@ -21,6 +21,7 @@ This template provides a standardized framework for creating new documentation t
 ### 2.1. Required Elements
 
 Every document must include:
+
 - [ ] H1 heading with anchor: `<a id="document-name"></a>Document Title`
 - [ ] Numbered headings (1., 1.1., 1.1.1.) for hierarchy
 - [ ] Table of Contents (collapsible format)
@@ -103,7 +104,7 @@ Detailed content...
 
 ### 5.1. Code Block Formatting
 
-```markdown
+````markdown
 ```php
 // PHP code example with syntax highlighting
 function exampleFunction(string $parameter): string
@@ -111,7 +112,8 @@ function exampleFunction(string $parameter): string
     return "Processed: " . $parameter;
 }
 ```
-```
+
+````
 
 ### 5.2. Inline Code
 
@@ -207,6 +209,7 @@ Replace template examples with:
 ### 9.1. Required Standards Compliance
 
 This template ensures compliance with:
+
 - [Documentation Standards](../010-documentation-standards.md)
 - [TOC-Heading Synchronization](../020-toc-heading-synchronization.md)
 - [Mermaid Accessibility Standards](../040-mermaid-accessibility-standards.md)
