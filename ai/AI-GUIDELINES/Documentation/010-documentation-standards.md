@@ -59,17 +59,17 @@ Accessibility is a primary requirement for all documentation.
 
 ## 3.1. Color and Contrast
 
-*   **Contrast Ratio:** All text must have a minimum contrast ratio of **4.5:1** against its background (WCAG AA). Large text (18pt+ or 14pt+ bold) must have a minimum of 3:1.
-*   **Color Independence:** Information must not be conveyed by color alone. Use labels, shapes, and patterns in addition to color.
-*   **Approved Palette:** Use the approved high-contrast color palette for all visual elements, including diagrams.
+- **Contrast Ratio:** All text must have a minimum contrast ratio of **4.5:1** against its background (WCAG AA). Large text (18pt+ or 14pt+ bold) must have a minimum of 3:1.
+- **Color Independence:** Information must not be conveyed by color alone. Use labels, shapes, and patterns in addition to color.
+- **Approved Palette:** Use the approved high-contrast color palette for all visual elements, including diagrams.
 
 ## 3.2. Mermaid Diagram Standards
 
 All Mermaid diagrams MUST be created with accessibility in mind.
 
-*   **High-Contrast Themes:** Use the provided high-contrast `dark` (recommended) or `light` theme configurations. These themes use the approved, WCAG-compliant color palette.
-*   **`classDef` for Styling:** Use `classDef` to apply styles to nodes, ensuring that `fill`, `stroke`, and `color` (for text) are all explicitly set to high-contrast combinations.
-*   **Alt Text:** Provide descriptive alternative text for all diagrams to support screen readers.
+- **High-Contrast Themes:** Use the provided high-contrast `dark` (recommended) or `light` theme configurations. These themes use the approved, WCAG-compliant color palette.
+- **`classDef` for Styling:** Use `classDef` to apply styles to nodes, ensuring that `fill`, `stroke`, and `color` (for text) are all explicitly set to high-contrast combinations.
+- **Alt Text:** Provide descriptive alternative text for all diagrams to support screen readers.
 
 **Example of an accessible Mermaid diagram node definition:**
 
@@ -77,15 +77,15 @@ All Mermaid diagrams MUST be created with accessibility in mind.
 
 When a code block is placed inside a colored container, it MUST be wrapped in a dark-themed container to ensure the syntax highlighting has sufficient contrast.
 
-*   **Code Block Background:** `#1e1e1e` (VS Code dark theme)
-*   **Code Block Text:** `#d4d4d4` (light gray)
+- **Code Block Background:** `#1e1e1e` (VS Code dark theme)
+- **Code Block Text:** `#d4d4d4` (light gray)
 
 ## 4. Structure and Formatting
 
-*   **Markdown:** All documentation must be written in Markdown.
-*   **Hierarchical Numbering:** Headings must be numbered sequentially (e.g., `1.`, `1.1.`, `1.1.1.`).
-*   **Table of Contents (TOC):** All documents must have an unnumbered TOC heading immediately after the introduction (section 1), with entries linking to numbered sections starting from section 2.
-*   **Navigation:** All guideline documents must include a consistent navigation footer (`## Navigation`) with "Previous" and "Next" links.
+- **Markdown:** All documentation must be written in Markdown.
+- **Hierarchical Numbering:** Headings must be numbered sequentially (e.g., `1.`, `1.1.`, `1.1.1.`).
+- **Table of Contents (TOC):** All documents must have an unnumbered TOC heading immediately after the introduction (section 1), with entries linking to numbered sections starting from section 2.
+- **Navigation:** All guideline documents must include a consistent navigation footer (`## Navigation`) with "Previous" and "Next" links.
 
 ## 5. Link Integrity: TOC-Heading Synchronization
 
@@ -95,15 +95,16 @@ Broken links in documentation are unacceptable. The **TOC-Heading Synchronizatio
 
 All internal anchor links (`#...`) MUST be generated using the following algorithm, which mimics GitHub's anchor generation:
 
-1.  Convert heading text to lowercase.
-2.  Replace spaces with hyphens (`-`).
-3.  Remove all characters except alphanumeric characters and hyphens.
-4.  Handle special cases like ampersands (`&` becomes `--`).
-5.  Remove leading/trailing hyphens.
+1. Convert heading text to lowercase.
+2. Replace spaces with hyphens (`-`).
+3. Remove all characters except alphanumeric characters and hyphens.
+4. Handle special cases like ampersands (`&` becomes `--`).
+5. Remove leading/trailing hyphens.
 
 ## 5.2. TOC Structure Requirements
 
 **TOC Requirements:**
+
 - **Unnumbered Heading:** TOC must use unnumbered heading (e.g., `## Table of Contents`, not `## 2. Table of Contents`)
 - **Collapsible Format:** TOC must be wrapped in HTML `<details>`/`<summary>` tags for collapsibility
 - **Numbered References:** TOC entries must reference numbered sections (e.g., "2. Accessibility")
@@ -112,6 +113,7 @@ All internal anchor links (`#...`) MUST be generated using the following algorit
 - **GitHub-Compatible Anchors:** All TOC links must use GitHub's anchor generation algorithm
 
 **TOC Format Example:**
+
 ```markdown
 # <a id="document-name"></a>Document Title
 
@@ -154,10 +156,10 @@ For large-scale documentation refactoring or remediation projects, the DRIP meth
 
 ## 6.1. DRIP Phases
 
-*   **Week 1: Analysis & Planning:** Audit the documentation, identify gaps, and create a remediation strategy.
-*   **Week 2: Content Remediation:** Fix accessibility issues, create and enhance content, and modernize code examples.
-*   **Week 3: Link Integrity & Navigation:** Apply the TOC-Heading Synchronization methodology to fix all broken links.
-*   **Week 4: Quality Assurance & Validation:** Perform a final, comprehensive validation of all documentation.
+- **Week 1: Analysis & Planning:** Audit the documentation, identify gaps, and create a remediation strategy.
+- **Week 2: Content Remediation:** Fix accessibility issues, create and enhance content, and modernize code examples.
+- **Week 3: Link Integrity & Navigation:** Apply the TOC-Heading Synchronization methodology to fix all broken links.
+- **Week 4: Quality Assurance & Validation:** Perform a final, comprehensive validation of all documentation.
 
 ## 6.2. Task Management
 
@@ -169,39 +171,39 @@ To ensure consistency and prevent common rendering issues, the following specifi
 
 ## 7.1. Headings
 
-*   **Style:** Use ATX style headings (`#`).
-*   **Increment:** Increment heading levels by one at a time (e.g., `##` follows `#`). (MD001)
-*   **Spacing:** Add a single space after the hash. (MD018)
-*   **Surrounding Lines:** Surround all headings with blank lines. (MD022)
+- **Style:** Use ATX style headings (`#`).
+- **Increment:** Increment heading levels by one at a time (e.g., `##` follows `#`). (MD001)
+- **Spacing:** Add a single space after the hash. (MD018)
+- **Surrounding Lines:** Surround all headings with blank lines. (MD022)
 
 ## 7.2. Lists
 
-*   **Style:** Use fenced code blocks (three backticks ```). (MD046)
-*   **Language Specifier:** Always specify the language for syntax highlighting (e.g., ```php). (MD040)
-*   **Surrounding Lines:** Surround all fenced code blocks with blank lines. (MD031)
+- **Style:** Use fenced code blocks (three backticks ```). (MD046)
+- **Language Specifier:** Always specify the language for syntax highlighting (e.g., ```php). (MD040)
+- **Surrounding Lines:** Surround all fenced code blocks with blank lines. (MD031)
 
 ## 7.4. Links and Images
 
-*   **Syntax:** Use standard Markdown link syntax `[text](https://example.com)`.
-*   **Alt Text:** All images MUST have descriptive alternate text. (MD045)
+- **Syntax:** Use standard Markdown link syntax `[text](https://example.com)`.
+- **Alt Text:** All images MUST have descriptive alternate text. (MD045)
 
 ## 7.5. Emphasis
 
-*   **Italics:** Use a single asterisk (`*text*`). (MD049)
-*   **Bold:** Use double asterisks (`**text**`). (MD050)
+- **Italics:** Use a single asterisk (`*text*`). (MD049)
+- **Bold:** Use double asterisks (`**text**`). (MD050)
 
 ## 8. Asset Management
 
-*   **Storage:** All assets (images, diagrams, etc.) used in project documentation MUST be stored in a suitably-named folder within the `docs/assets/` directory of the project root.
-*   **Linking:** Reference these assets using relative paths.
+- **Storage:** All assets (images, diagrams, etc.) used in project documentation MUST be stored in a suitably-named folder within the `docs/assets/` directory of the project root.
+- **Linking:** Reference these assets using relative paths.
 
 ## 9. Exercise Organization
 
 For educational documentation, exercises and their solutions should be organized systematically:
 
-*   **Exercises:** Place all exercise files in a dedicated `888-exercises` folder.
-*   **Answers:** Place all corresponding sample answers in an `888-sample-answers` folder.
-*   **Consistency:** Ensure a clear and consistent naming convention between exercise files and their answers.
+- **Exercises:** Place all exercise files in a dedicated `888-exercises` folder.
+- **Answers:** Place all corresponding sample answers in an `888-sample-answers` folder.
+- **Consistency:** Ensure a clear and consistent naming convention between exercise files and their answers.
 
 ## 10. Document Structure Standards
 
@@ -217,19 +219,20 @@ Every document MUST include:
 
 ## 10.2. File Naming Convention
 
-*   **Prefix:** 3-digit number in multiples of 10 (010, 020, 030...)
-*   **Descriptive Name:** Clear, hyphen-separated filename
-*   **Extension:** `.md` for all documentation files
+- **Prefix:** 3-digit number in multiples of 10 (010, 020, 030...)
+- **Descriptive Name:** Clear, hyphen-separated filename
+- **Extension:** `.md` for all documentation files
 
 ## 10.3. Folder Organization
 
-*   **Index Files:** Each folder must have a `000-index.md` file
-*   **Sequential Ordering:** Files are ordered by prefix number
-*   **Logical Grouping:** Related content grouped in appropriate folders
+- **Index Files:** Each folder must have a `000-index.md` file
+- **Sequential Ordering:** Files are ordered by prefix number
+- **Logical Grouping:** Related content grouped in appropriate folders
 
 ## 10.4. Document Organization Pattern
 
 **Standard Document Structure:**
+
 1. **H1 Title** (with anchor)
 2. **Introduction** (section 1 - numbered)
 3. **Table of Contents** (unnumbered heading, collapsible)
@@ -237,6 +240,7 @@ Every document MUST include:
 5. **Navigation Footer** (final unnumbered section)
 
 **TOC Requirements:**
+
 - TOC heading must be unnumbered (e.g., `## Table of Contents`)
 - TOC must be collapsible using `<details>`/`<summary>` tags
 - TOC entries must reference numbered sections (2., 3., 4., etc.)
@@ -246,56 +250,56 @@ Every document MUST include:
 
 ## 11.1. Content Validation
 
-*   **Accuracy:** All technical information must be current and accurate
-*   **Clarity:** Content must be understandable by junior developers
-*   **Completeness:** Include all necessary context and examples
-*   **Consistency:** Maintain consistent formatting and terminology
+- **Accuracy:** All technical information must be current and accurate
+- **Clarity:** Content must be understandable by junior developers
+- **Completeness:** Include all necessary context and examples
+- **Consistency:** Maintain consistent formatting and terminology
 
 ## 11.2. Link Integrity
 
-*   **Internal Links:** All internal links must work correctly
-*   **External Links:** Regular validation of external references
-*   **Anchor Generation:** Use GitHub's anchor generation algorithm
-*   **Cross-References:** Maintain accurate cross-references between documents
+- **Internal Links:** All internal links must work correctly
+- **External Links:** Regular validation of external references
+- **Anchor Generation:** Use GitHub's anchor generation algorithm
+- **Cross-References:** Maintain accurate cross-references between documents
 
 ## 11.3. Accessibility Compliance
 
-*   **WCAG 2.1 AA:** All content must meet accessibility standards
-*   **Color Contrast:** Minimum 4.5:1 contrast ratio for text
-*   **Screen Readers:** Proper alt text and structure for screen readers
-*   **Visual Design:** High contrast themes and clear typography
+- **WCAG 2.1 AA:** All content must meet accessibility standards
+- **Color Contrast:** Minimum 4.5:1 contrast ratio for text
+- **Screen Readers:** Proper alt text and structure for screen readers
+- **Visual Design:** High contrast themes and clear typography
 
 ## 12. Maintenance Procedures
 
 ## 12.1. Regular Updates
 
-*   **Quarterly Reviews:** Comprehensive review of all documentation
-*   **Version Updates:** Update examples with current best practices
-*   **Link Validation:** Check and fix broken links
-*   **Accessibility Audit:** Regular WCAG compliance checks
+- **Quarterly Reviews:** Comprehensive review of all documentation
+- **Version Updates:** Update examples with current best practices
+- **Link Validation:** Check and fix broken links
+- **Accessibility Audit:** Regular WCAG compliance checks
 
 ## 12.2. Content Refresh
 
-*   **Technical Accuracy:** Verify all code examples and commands
-*   **Best Practices:** Update with current industry standards
-*   **User Feedback:** Incorporate feedback from development team
-*   **Performance:** Optimize document loading and navigation
+- **Technical Accuracy:** Verify all code examples and commands
+- **Best Practices:** Update with current industry standards
+- **User Feedback:** Incorporate feedback from development team
+- **Performance:** Optimize document loading and navigation
 
 ## 13. Integration with Development Workflows
 
 ## 13.1. Documentation in Development
 
-*   **Code Comments:** Follow documentation standards for inline comments
-*   **README Files:** Apply standards to project README files
-*   **API Documentation:** Use consistent formatting for API docs
-*   **Change Logs:** Maintain structured change documentation
+- **Code Comments:** Follow documentation standards for inline comments
+- **README Files:** Apply standards to project README files
+- **API Documentation:** Use consistent formatting for API docs
+- **Change Logs:** Maintain structured change documentation
 
 ## 13.2. Review Processes
 
-*   **Peer Review:** Documentation review as part of code review process
-*   **Accessibility Review:** Include accessibility checks in reviews
-*   **Link Validation:** Automated checking of link integrity
-*   **Style Consistency:** Validation of formatting standards
+- **Peer Review:** Documentation review as part of code review process
+- **Accessibility Review:** Include accessibility checks in reviews
+- **Link Validation:** Automated checking of link integrity
+- **Style Consistency:** Validation of formatting standards
 
 ## 14. Navigation
 

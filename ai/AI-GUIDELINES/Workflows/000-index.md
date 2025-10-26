@@ -11,18 +11,23 @@ This section contains comprehensive workflow guidelines and processes for develo
 ## 3. Workflow Structure
 
 ### 3.1. [AI-Assisted Development Workflows](010-workflows.md)
+
 Comprehensive workflows for AI-assisted development, from feature conception to implementation and version control.
 
 ### 3.2. [Workflow Guidelines](020-workflow-guidelines.md)
+
 Detailed Git workflow standards, terminal management, and development processes for consistent team collaboration.
 
 ### 3.3. [Product Requirements Document Workflow](030-prd-workflow.md)
+
 Structured process for creating and managing Product Requirements Documents with AI assistance.
 
 ### 3.4. [Task Generation Workflow](040-task-generation.md)
+
 Systematic approach to breaking down requirements into actionable hierarchical task lists.
 
 ### 3.5. [Task Processing Workflow](050-task-processing.md)
+
 Step-by-step process for implementing features through sequential task execution with user verification.
 
 ## 4. Key Features

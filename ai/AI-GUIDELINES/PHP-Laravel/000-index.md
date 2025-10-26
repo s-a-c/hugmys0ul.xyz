@@ -11,21 +11,27 @@ This section contains comprehensive development standards for PHP and Laravel pr
 ## 3. PHP-Laravel Development Structure
 
 ### 3.1. [Project Overview](010-project-overview.md)
+
 Comprehensive overview of Laravel 12.x project architecture, plugin system, and technology stack with focus on SME and enterprise applications.
 
 ### 3.2. [Development Standards](020-development-standards.md)
+
 Complete development standards including code style, architecture patterns, PHPStan Level 10 compliance, and modern PHP 8.4 features.
 
 ### 3.3. [Testing Standards](030-testing-standards.md)
+
 Comprehensive testing requirements including 90% coverage targets, test types, architecture testing, and state testing type safety.
 
 ### 3.4. [Security Standards](040-security-standards.md)
+
 Complete security implementation guide covering authentication, authorization, data protection, API security, and compliance requirements.
 
 ### 3.5. [Performance Standards](050-performance-standards.md)
+
 Performance optimization strategies including database optimization, caching, frontend performance, and monitoring.
 
 ### 3.6. [Comprehensive Testing Guide](060-testing-comprehensive/000-index.md)
+
 Detailed testing documentation with templates, examples, and specialized testing approaches for complex scenarios.
 
 ## 4. Key Features

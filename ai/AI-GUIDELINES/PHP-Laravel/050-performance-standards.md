@@ -11,6 +11,7 @@ This principle ensures that performance improvements are not only effective but 
 ### 2.1. Query Optimization
 
 #### 2.1.1. Eloquent Optimization
+
 - Use eager loading to prevent N+1 query problems
 - Select only required columns to reduce data transfer
 - Use query scopes for reusable query logic
@@ -30,6 +31,7 @@ foreach ($users as $user) {
 ```
 
 #### 2.1.2. Database Indexing
+
 - Add indexes on frequently queried columns
 - Use composite indexes for multi-column queries
 - Monitor query performance with Laravel Telescope
@@ -46,6 +48,7 @@ Schema::table('orders', function (Blueprint $table) {
 ```
 
 #### 2.1.3. Query Caching
+
 - Cache frequently accessed data
 - Use Laravel's cache system for expensive queries
 - Implement cache invalidation strategies
@@ -70,6 +73,7 @@ Cache::tags(['users', 'active'])->remember('active_users_count', 3600, function 
 ### 2.2. Database Connection Management
 
 #### 2.2.1. Connection Pooling
+
 - Use connection pooling for high-traffic applications
 - Configure appropriate connection limits
 - Monitor connection usage and performance
@@ -77,6 +81,7 @@ Cache::tags(['users', 'active'])->remember('active_users_count', 3600, function 
 - Use read/write database separation when applicable
 
 #### 2.2.2. Database Configuration
+
 - Optimize MySQL/PostgreSQL configuration for your workload
 - Use appropriate storage engines (InnoDB recommended)
 - Configure proper buffer sizes and cache settings
@@ -88,6 +93,7 @@ Cache::tags(['users', 'active'])->remember('active_users_count', 3600, function 
 ### 3.1. Multi-Level Caching
 
 #### 3.1.1. Application Cache
+
 - Use Redis or Memcached for distributed caching
 - Implement cache warming strategies
 - Use cache hierarchies (L1: memory, L2: Redis, L3: database)
@@ -113,6 +119,7 @@ class ProductService
 ```
 
 #### 3.1.2. HTTP Caching
+
 - Implement HTTP cache headers for API responses
 - Use ETags for conditional requests
 - Implement proper cache-control headers
@@ -132,6 +139,7 @@ public function showProduct(Product $product): JsonResponse
 ### 3.2. Cache Invalidation Strategies
 
 #### 3.2.1. Tag-Based Invalidation
+
 - Use cache tags for organized invalidation
 - Implement cascade invalidation for related data
 - Use event-driven cache invalidation
@@ -155,6 +163,7 @@ class ProductObserver
 ```
 
 #### 3.2.2. Time-Based Invalidation
+
 - Use appropriate expiration times
 - Implement cache warming strategies
 - Use sliding expiration for dynamic content
@@ -166,6 +175,7 @@ class ProductObserver
 ### 4.1. Asset Optimization
 
 #### 4.1.1. CSS and JavaScript Optimization
+
 - Minify and compress CSS and JavaScript files
 - Use asset bundling and code splitting
 - Implement lazy loading for non-critical resources
@@ -190,6 +200,7 @@ export default defineConfig({
 ```
 
 #### 4.1.2. Image Optimization
+
 - Use modern image formats (WebP, AVIF)
 - Implement responsive images with srcset
 - Use image lazy loading
@@ -212,6 +223,7 @@ export default defineConfig({
 ### 4.2. Rendering Performance
 
 #### 4.2.1. Server-Side Optimization
+
 - Implement output caching for static pages
 - Use Blade template caching
 - Optimize database queries in views
@@ -228,6 +240,7 @@ export default defineConfig({
 ```
 
 #### 4.2.2. Client-Side Optimization
+
 - Implement virtual scrolling for large lists
 - Use debouncing for search inputs
 - Implement pagination and infinite scroll
@@ -239,6 +252,7 @@ export default defineConfig({
 ### 5.1. Queue Management
 
 #### 5.1.1. Background Processing
+
 - Use Laravel queues for time-consuming tasks
 - Implement proper queue priorities
 - Use queue workers with appropriate configuration
@@ -271,6 +285,7 @@ class ProcessPayment implements ShouldQueue
 ```
 
 #### 5.1.2. Queue Configuration
+
 - Use appropriate queue drivers (Redis recommended)
 - Configure queue worker processes
 - Implement queue monitoring and alerting
@@ -280,6 +295,7 @@ class ProcessPayment implements ShouldQueue
 ### 5.2. Memory Management
 
 #### 5.2.1. Memory Optimization
+
 - Monitor memory usage with Laravel Telescope
 - Implement memory-efficient data structures
 - Use generators for large datasets
@@ -310,6 +326,7 @@ private function getRecordsGenerator(): Generator
 ```
 
 #### 5.2.2. Resource Management
+
 - Implement connection pooling for external services
 - Use HTTP client pooling for API calls
 - Implement proper resource cleanup
@@ -321,6 +338,7 @@ private function getRecordsGenerator(): Generator
 ### 6.1. Performance Monitoring
 
 #### 6.1.1. Application Monitoring
+
 - Use Laravel Telescope for development monitoring
 - Implement APM (Application Performance Monitoring) in production
 - Monitor response times and throughput
@@ -355,6 +373,7 @@ class PerformanceMonitor
 ```
 
 #### 6.1.2. Database Monitoring
+
 - Monitor slow queries and optimize them
 - Track database connection usage
 - Monitor query execution plans
@@ -364,6 +383,7 @@ class PerformanceMonitor
 ### 6.2. Performance Metrics
 
 #### 6.2.1. Key Performance Indicators
+
 - **Response Time**: Average response time < 200ms
 - **Throughput**: Requests per second capacity
 - **Error Rate**: < 0.1% error rate
@@ -371,6 +391,7 @@ class PerformanceMonitor
 - **Cache Hit Rate**: > 90% for frequently accessed data
 
 #### 6.2.2. Alerting Thresholds
+
 - Response time > 500ms
 - Error rate > 1%
 - Database query time > 100ms
@@ -382,6 +403,7 @@ class PerformanceMonitor
 ### 7.1. Horizontal Scaling
 
 #### 7.1.1. Load Balancing
+
 - Implement load balancing for web servers
 - Use database read replicas for read-heavy applications
 - Implement session storage in Redis for distributed sessions
@@ -389,6 +411,7 @@ class PerformanceMonitor
 - Implement auto-scaling based on load
 
 #### 7.1.2. Microservices Considerations
+
 - Consider microservices for large applications
 - Implement service discovery and registration
 - Use API gateways for service communication
@@ -398,6 +421,7 @@ class PerformanceMonitor
 ### 7.2. Performance Testing
 
 #### 7.2.1. Load Testing
+
 - Use tools like JMeter or k6 for load testing
 - Test peak load scenarios
 - Perform stress testing to find breaking points
@@ -419,6 +443,7 @@ test('api_handles_concurrent_requests', function () {
 ```
 
 #### 7.2.2. Benchmarking
+
 - Establish performance baselines
 - Compare performance before and after optimizations
 - Benchmark database query performance
@@ -428,6 +453,7 @@ test('api_handles_concurrent_requests', function () {
 ## 8. Performance Optimization Checklist
 
 ### 8.1. Database Optimization
+
 - [ ] Implement proper indexing strategy
 - [ ] Use eager loading to prevent N+1 queries
 - [ ] Cache frequently accessed data
@@ -435,6 +461,7 @@ test('api_handles_concurrent_requests', function () {
 - [ ] Use read replicas for read-heavy operations
 
 ### 8.2. Caching Implementation
+
 - [ ] Implement multi-level caching strategy
 - [ ] Use appropriate cache expiration times
 - [ ] Implement cache invalidation strategies
@@ -442,6 +469,7 @@ test('api_handles_concurrent_requests', function () {
 - [ ] Use CDN for static assets
 
 ### 8.3. Frontend Optimization
+
 - [ ] Minify and compress assets
 - [ ] Implement lazy loading
 - [ ] Optimize images and use modern formats
@@ -449,6 +477,7 @@ test('api_handles_concurrent_requests', function () {
 - [ ] Implement browser caching
 
 ### 8.4. Application Performance
+
 - [ ] Use queues for background processing
 - [ ] Implement proper memory management
 - [ ] Monitor resource utilization
@@ -458,6 +487,7 @@ test('api_handles_concurrent_requests', function () {
 ## 9. See Also
 
 ### Related Guidelines
+
 - **[Project Overview](010-project-overview.md)** - Understanding performance requirements
 - **[Development Standards](020-development-standards.md)** - Performance-conscious coding practices
 - **[Testing Standards](030-testing-standards.md)** - Performance testing requirements
@@ -466,6 +496,7 @@ test('api_handles_concurrent_requests', function () {
 ### Performance Decision Guide for Junior Developers
 
 #### "I need to optimize a slow database query - where do I start?"
+
 1. **Analysis**: Use Laravel Telescope or EXPLAIN to analyze the query
 2. **Indexing**: Check if proper indexes exist on queried columns
 3. **Eager Loading**: Prevent N+1 queries with proper eager loading
@@ -473,6 +504,7 @@ test('api_handles_concurrent_requests', function () {
 5. **Monitoring**: Monitor query performance after optimization
 
 #### "My application is slow - what should I check first?"
+
 - **Database Queries**: Check for slow queries and N+1 problems
 - **Caching**: Verify caching is implemented and effective
 - **Asset Loading**: Check if assets are optimized and cached
@@ -480,6 +512,7 @@ test('api_handles_concurrent_requests', function () {
 - **Queue Processing**: Check if background jobs are processing efficiently
 
 #### "How do I implement effective caching?"
+
 - **Identify**: Find frequently accessed, rarely changed data
 - **Strategy**: Choose appropriate caching strategy (time-based, tag-based)
 - **Implementation**: Use Laravel's cache system with proper expiration

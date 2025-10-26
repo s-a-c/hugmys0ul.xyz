@@ -35,20 +35,24 @@ declare(strict_types=1);
 ### 2.2. Configuration Files
 
 **Code Style:**
+
 - `.editorconfig` - Editor standards
 - `.prettierrc.js` - Prettier configuration
 - `pint.json` - Laravel Pint settings
 
 **Static Analysis:**
+
 - `phpstan.neon` - PHPStan configuration
 - `rector.php` - Rector configuration
 
 **Testing:**
+
 - `phpunit.xml` - PHPUnit configuration
 - `pest.config.php` - Pest settings
 - `reports/coverage/` - Coverage reports
 
 **CI/CD:**
+
 - `.github/workflows/code-quality.yml` - GitHub Actions workflow
 
 ## 3. Architecture Patterns

@@ -1,12 +1,10 @@
-# 0. AI Guidelines
+# AI Guidelines
 
 Version: 1.0  
 Date: 2025-10-10
 
-## 0.1. Table of Contents
+## Table of Contents
 
-- [0. AI Guidelines](#0-ai-guidelines)
-  - [0.1. Table of Contents](#01-table-of-contents)
 - [1. Overview](#1-overview)
 - [2. Core Operational Tools](#2-core-operational-tools)
   - [2.1. byterover-store-knowledge](#21-byterover-store-knowledge)
@@ -29,16 +27,11 @@ Date: 2025-10-10
   - [6.1. No Secrets in Repository](#61-no-secrets-in-repository)
   - [6.2. Path Policy](#62-path-policy)
 - [7. Guideline Structure](#7-guideline-structure)
-
----
+- [8. Navigation](#8-navigation)
 
 ## 1. Overview
 
 This document provides a comprehensive set of guidelines for AI-assisted development. It governs AI task behavior, sensitive actions, and compliance requirements. These guidelines are intended for personal use with various AI assistants to ensure consistency, quality, and security.
-
-— Navigation: [Previous](#0-ai-guidelines) | [Next](#2-core-operational-tools) | [Top](#0-ai-guidelines)
-
----
 
 ## 2. Core Operational Tools
 
@@ -47,6 +40,7 @@ You are given two tools from the Byterover MCP server. Their use is mandatory as
 ### 2.1. `byterover-store-knowledge`
 
 You MUST always use this tool when:
+
 - Learning new patterns, APIs, or architectural decisions from the codebase.
 - Encountering error solutions or debugging techniques.
 - Finding reusable code patterns or utility functions.
@@ -55,14 +49,11 @@ You MUST always use this tool when:
 ### 2.2. `byterover-retrieve-knowledge`
 
 You MUST always use this tool when:
+
 - Starting any new task or implementation to gather relevant context.
 - Before making architectural decisions to understand existing patterns.
 - When debugging issues to check for previous solutions.
 - Working with unfamiliar parts of the codebase.
-
-— Navigation: [Previous](#1-overview) | [Next](#3-core-principles) | [Top](#0-ai-guidelines)
-
----
 
 ## 3. Core Principles
 
@@ -71,10 +62,6 @@ You MUST always use this tool when:
 - Hybrid Format: This system uses a hybrid approach:
   - Standard Markdown (.md): For human-readable principles and guidelines.
   - Markdown Context (.mdc): For machine-actionable, project-specific instructions for the AI.
-
-— Navigation: [Previous](#2-core-operational-tools) | [Next](#4-ai-persona-and-communication-style) | [Top](#0-ai-guidelines)
-
----
 
 ## 4. AI Persona and Communication Style
 
@@ -99,6 +86,7 @@ You MUST always use this tool when:
 Before taking action, you must follow these review steps.
 
 #### 4.3.1. For Code Changes
+
 1. Review Guidelines: Check PHP-Laravel/010-development-standards.md for relevant patterns.
 2. Security Assessment: Apply rules from PHP-Laravel/030-security-standards.md.
 3. Performance Impact: Consider implications from PHP-Laravel/040-performance-standards.md.
@@ -106,20 +94,18 @@ Before taking action, you must follow these review steps.
 5. Documentation Needs: Identify any required documentation changes based on Documentation/010-documentation-standards.md.
 
 #### 4.3.2. For New Features
+
 1. Architecture Review: Ensure alignment with the project's established architecture.
 2. Framework Compliance: Use established patterns and conventions for the relevant framework (e.g., FilamentPHP, Laravel).
 3. Modern Practices: Prioritize modern techniques and tools (e.g., Laravel 12, PHP 8.4).
 4. Comprehensive Testing: Plan for a full testing suite with a minimum of 90% coverage.
 
 #### 4.3.3. For Documentation Tasks
+
 1. Accessibility First: Apply all accessibility standards from the documentation guidelines.
 2. Visual Learning: Include color-coded, accessible Mermaid diagrams and visual aids.
 3. Junior Developer Focus: Use clear, explicit language with concrete examples.
 4. Technical Accuracy: Verify all commands and technical information.
-
-— Navigation: [Previous](#3-core-principles) | [Next](#5-orchestration-policy) | [Top](#0-ai-guidelines)
-
----
 
 ## 5. Orchestration Policy
 
@@ -140,7 +126,7 @@ This policy defines the technical requirements for how an AI agent must interact
 ### 5.3. Sensitive Actions Rule Citation
 
 - Requirement: When performing sensitive actions (e.g., security-affecting changes, code execution, external access), agents MUST cite the exact rule(s) they are following with a clickable reference to the specific file and line number.
-  - Example: rule [AI-GUIDELINES/Security/General.md:42](AI-GUIDELINES/Security/General.md:42)
+  - Example: rule [AI-GUIDELINES/Security/General.md:42](./AI-GUIDELINES/Security/General.md:42)
 
 ### 5.4. Drift Detection
 
@@ -151,10 +137,6 @@ This policy defines the technical requirements for how an AI agent must interact
 
 - This policy is enforced by a combination of CLI validators, pre-commit hooks, and GitHub Actions workflows.
 - Violations will produce actionable, clickable output and a non-zero exit status.
-
-— Navigation: [Previous](#4-ai-persona-and-communication-style) | [Next](#6-general-security-principles) | [Top](#0-ai-guidelines)
-
----
 
 ## 6. General Security Principles
 
@@ -167,13 +149,10 @@ This policy defines the technical requirements for how an AI agent must interact
 
 - Rule: Disallow committing files that match sensitive patterns, such as tests/Support/Fixtures/*.secrets.*, unless they are explicitly exempted with a documented risk acceptance.
 
-— Navigation: [Previous](#5-orchestration-policy) | [Next](#7-guideline-structure) | [Top](#0-ai-guidelines)
-
----
-
 ## 7. Guideline Structure
 
 All detailed, project-specific, and technology-specific guidelines are organized within the AI-GUIDELINES/ directory. The structure is as follows:
+
 - AI-GUIDELINES/
   - PHP-Laravel/
   - JavaScript-TypeScript/
@@ -184,4 +163,6 @@ All detailed, project-specific, and technology-specific guidelines are organized
 
 Please refer to the README.md file within each subdirectory for a detailed index of the guidelines it contains.
 
-— Navigation: [Previous](#6-general-security-principles) | [Next](#0-ai-guidelines) | [Top](#0-ai-guidelines)
+## 8. Navigation
+
+[Next](./AI-GUIDELINES/000-index.md) | [Top](#ai-guidelines)

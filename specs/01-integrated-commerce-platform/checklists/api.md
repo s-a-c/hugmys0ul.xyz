@@ -33,9 +33,9 @@
 
 ## Notes & Decisions
 
--   **[RESOLVED] CHK008 & CHK009 (Constraints & Auth)**: These items have been addressed. The OpenAPI contracts were updated to include `maxLength` constraints and a `securitySchemes` definition for bearer token authentication.
--   **[PROPOSED] CHK013 & CHK014 (Pagination & Filtering)**: It is decided that any future `GET` endpoints that return a list of resources (e.g., `GET /api/v1/products`) MUST implement a standardized approach:
-    -   **Pagination**: Use `limit` (integer, default 25) and `offset` (integer, default 0) query parameters.
-    -   **Sorting**: Use a `sort` (string) query parameter that accepts a comma-separated list of fields (e.g., `sort=name,-created_at`).
-    
+- **[RESOLVED] CHK008 & CHK009 (Constraints & Auth)**: These items have been addressed. The OpenAPI contracts were updated to include `maxLength` constraints and a `securitySchemes` definition for bearer token authentication.
+- **[PROPOSED] CHK013 & CHK014 (Pagination & Filtering)**: It is decided that any future `GET` endpoints that return a list of resources (e.g., `GET /api/v1/products`) MUST implement a standardized approach:
+  - **Pagination**: Use `limit` (integer, default 25) and `offset` (integer, default 0) query parameters.
+  - **Sorting**: Use a `sort` (string) query parameter that accepts a comma-separated list of fields (e.g., `sort=name,-created_at`).
+
 This decision ensures that as the API grows, it does so in a consistent and predictable manner.

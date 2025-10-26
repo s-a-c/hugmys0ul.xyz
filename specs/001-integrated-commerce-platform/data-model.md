@@ -16,12 +16,12 @@ This document outlines the key data entities and their authoritative sources, as
 
 ## State Transitions
 
--   **Sales Order**: `pending` -> `processing` -> `shipped` -> `completed` / `cancelled`
--   **Invoice**: `draft` -> `sent` -> `paid` / `void`
+- **Sales Order**: `pending` -> `processing` -> `shipped` -> `completed` / `cancelled`
+- **Invoice**: `draft` -> `sent` -> `paid` / `void`
 
 ## Validation Rules
 
--   All unique identifiers (`id`, `sku`, `email`) must be unique within their respective tables.
--   `email` must be a valid email format.
--   `quantity_on_hand` cannot be negative.
--   `total_price` and `amount` must be positive numeric values.
+- All unique identifiers (`id`, `sku`, `email`) must be unique within their respective tables.
+- `email` must be a valid email format.
+- `quantity_on_hand` cannot be negative.
+- `total_price` and `amount` must be positive numeric values.

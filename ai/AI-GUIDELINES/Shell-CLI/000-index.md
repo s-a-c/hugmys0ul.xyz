@@ -11,15 +11,19 @@ This section contains comprehensive guidelines for shell and command-line interf
 ## 3. Shell-CLI Structure
 
 ### 3.1. [Terminal Management](010-terminal-management.md)
+
 Comprehensive guidelines for terminal session management, resource optimization, and efficient workflow practices.
 
 ### 3.2. [Text Processing Tools](020-text-processing.md)
+
 Detailed coverage of essential Unix/Linux text processing tools including awk, sed, grep, and other utilities for efficient data manipulation.
 
 ### 3.3. [System Administration](030-system-administration.md)
+
 System administration tasks, monitoring, maintenance procedures, and security best practices for command-line operations.
 
 ### 3.4. [Automation and Scripting](040-automation-scripting.md)
+
 Shell scripting best practices, automation techniques, and script development standards for repetitive tasks.
 
 ## 4. Key Features

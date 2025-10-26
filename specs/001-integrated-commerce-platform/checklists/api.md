@@ -35,6 +35,6 @@
 
 The following items are incomplete and represent gaps in the current API specification:
 
--   **CHK008 (Property Constraints)**: The contracts do not yet specify property-level constraints (e.g., `maxLength` for a string). This should be added to improve validation.
--   **CHK009 (Auth Definition)**: The contracts do not include a formal `securitySchemes` definition to describe the use of Laravel Sanctum tokens.
--   **CHK013 & CHK014 (Pagination/Filtering)**: The current API design is focused on `POST`/`PUT` for synchronization and does not yet include any `GET` endpoints that would return lists of resources. As such, pagination and filtering strategies have not been defined. This is acceptable for the current MVP but must be addressed when list-based endpoints are added in the future.
+- **CHK008 (Property Constraints)**: The contracts do not yet specify property-level constraints (e.g., `maxLength` for a string). This should be added to improve validation.
+- **CHK009 (Auth Definition)**: The contracts do not include a formal `securitySchemes` definition to describe the use of Laravel Sanctum tokens.
+- **CHK013 & CHK014 (Pagination/Filtering)**: The current API design is focused on `POST`/`PUT` for synchronization and does not yet include any `GET` endpoints that would return lists of resources. As such, pagination and filtering strategies have not been defined. This is acceptable for the current MVP but must be addressed when list-based endpoints are added in the future.

@@ -8,6 +8,7 @@
 ## Clarifications
 
 ### Session 2025-10-20
+
 - Q: What level of logging is required for the API calls between services? → A: a, b, c, configurable. c by default
 - Q: When a customer record is synchronized from the CRM to the other services, which specific fields are essential for the initial implementation? → A: ID, Full Name, Email, Shipping Address, Billing Address.
 - Q: How should the system behave if an API call to an external service (e.g., a payment gateway or shipping provider) fails during the checkout process? → A: c, then a
@@ -20,29 +21,35 @@
 ### Storefront User Stories
 
 #### User Story 5 - Product Discovery (Priority: P1)
+
 As a customer, I want to browse a list of products, filter them by category, and search for specific items, so that I can find what I want to buy.
 
 **Acceptance Scenarios**:
+
 1. **Given** I am on the storefront, **When** I navigate to the "Products" page, **Then** I see a paginated list of all available products.
 2. **Given** I am viewing the product list, **When** I use the search bar, **Then** the list is filtered to show only products matching my search term.
 
 #### User Story 6 - Account Management (Priority: P1)
+
 As a customer, I want to register for an account, log in, and view my order history, so that I can manage my relationship with the store.
 
 **Acceptance Scenarios**:
+
 1. **Given** I am a new user, **When** I register for an account using a Socialite provider, **Then** I am logged in and a customer record is created.
 2. **Given** I am logged in, **When** I navigate to my account page, **Then** I can see a list of my past orders.
 
 #### User Story 7 - Checkout Flow (Priority: P1)
+
 As a customer, I want to add a product to my cart, proceed to checkout, enter my shipping and payment information, and complete the purchase.
 
 **Acceptance Scenarios**:
+
 1. **Given** I am viewing a product, **When** I click "Add to Cart", **Then** the item is added to my shopping cart.
 2. **Given** I have items in my cart, **When** I complete the checkout form and submit my payment, **Then** my order is placed successfully and I see a confirmation page.
 
 ### Backend User Stories
-... (Existing User Stories 1-4 would be here) ...
 
+... (Existing User Stories 1-4 would be here) ...
 
 ...*Content unchanged*...
 
@@ -80,9 +87,9 @@ As a customer, I want to add a product to my cart, proceed to checkout, enter my
 - **Correlation ID**: All logs related to a single request MUST be tagged with a unique correlation ID that is propagated across all service boundaries.
 - **Distributed Tracing**: All services MUST participate in a distributed tracing system. Trace context MUST be propagated across all service boundaries (API calls, queue jobs) using the W3C Trace Context standard.
 - **Metrics**: All services MUST expose key application and system metrics in a Prometheus-compatible format. A Prometheus instance SHOULD be included as a service in the `podman-compose.yml` file for local metric collection. At a minimum, the following metrics must be tracked:
-    - **RED** for API endpoints (Rate, Errors, Duration).
-    - **USE** for system resources (Utilization, Saturation, Errors).
-    - Queue depths and job throughput for all asynchronous queues.
+  - **RED** for API endpoints (Rate, Errors, Duration).
+  - **USE** for system resources (Utilization, Saturation, Errors).
+  - Queue depths and job throughput for all asynchronous queues.
 - **Monitoring & Alerting**: An Application Performance Monitoring (APM) solution MUST be in place to track key metrics (latency, error rates, throughput) and send alerts on critical failures or performance degradation.
 - **Security Logging**: All security-sensitive events (e.g., failed logins, permission changes) MUST be logged.
 
@@ -105,8 +112,8 @@ As a customer, I want to add a product to my cart, proceed to checkout, enter my
 - **Data Protection**: Sensitive customer data MUST be encrypted at rest in the database. This includes, at a minimum: `full_name`, `email`, `shipping_address`, `billing_address`, and any stored `payment_method` information.
 - **Role-Based Access Control (RBAC)**: The admin panels for all services MUST implement a granular RBAC system. The initial roles will include `Administrator` (full control), `Editor` (data management), `Product Manager`, and `Order Manager`.
 - **User Authentication**:
-    - **Storefront Customers**: MUST be able to authenticate using Socialite providers (e.g., Google, GitHub).
-    - **Admin Users**: MUST authenticate using email and password. Multi-Factor Authentication (MFA) MUST be available as an optional security enhancement.
+  - **Storefront Customers**: MUST be able to authenticate using Socialite providers (e.g., Google, GitHub).
+  - **Admin Users**: MUST authenticate using email and password. Multi-Factor Authentication (MFA) MUST be available as an optional security enhancement.
 - **API Security**: All service-to-service communication MUST be authenticated using API tokens (e.g., via Laravel Sanctum). Tokens MUST be scoped to the minimum required permissions (principle of least privilege). Each service will have a unique token to access the others, and all requests must be made over HTTPS.
 
 ### Key Entities *(include if feature involves data)*
