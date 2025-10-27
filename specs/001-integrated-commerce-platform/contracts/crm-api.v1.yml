@@ -2,36 +2,256 @@ openapi: 3.0.0
 info:
   title: CRM Service API
   version: v1
-  description: API for managing orders in the CRM service.
+  description: |
+    API for managing customers and order logging in the CRM service.
+    
+    **Authentication**: Laravel Sanctum Bearer tokens (scoped per service)
+    **Base URL**: `http://crm-service/api/v1` (internal) or `http://localhost:8001/api/v1` (local dev)
+    
+    **Updated**: 2025-10-27 - Aligned with clarifications (REST + async events, custom exceptions, query filtering)
 security:
-  - bearerAuth: []
+  - sanctumAuth: []
 paths:
-  /api/v1/orders:
+  /customers:
+    get:
+      summary: List Customers
+      description: Retrieve paginated list of customers with optional filtering using spatie/laravel-query-builder
+      parameters:
+        - name: filter[name]
+          in: query
+          schema:
+            type: string
+          description: Filter by customer full name
+        - name: filter[email]
+          in: query
+          schema:
+            type: string
+          description: Filter by email address
+        - name: sort
+          in: query
+          schema:
+            type: string
+            example: "-created_at"
+          description: Sort by field (prefix with - for descending)
+        - name: include
+          in: query
+          schema:
+            type: string
+            example: "orders"
+          description: Include related resources
+        - name: page
+          in: query
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: List of customers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Customer'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
     post:
-      summary: Log Sales Order
-      description: Receives a new sales order from the E-commerce service to log against the customer's history.
+      summary: Create Customer
+      description: Create a new customer record (event will be dispatched to sync to other services)
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Order'
+              $ref: '#/components/schemas/CustomerInput'
       responses:
         '201':
-          description: Order logged successfully.
+          description: Customer created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Customer'
         '422':
-          description: Unprocessable Entity (Validation Error)
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  
+  /customers/{id}:
+    get:
+      summary: Get Customer by ID
+      description: Retrieve a single customer record (synchronous query for inter-service calls)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: ulid
+      responses:
+        '200':
+          description: Customer details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Customer'
+        '404':
+          description: Customer not found (custom CustomerNotFoundException)
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      summary: Update Customer
+      description: Update customer record (event will be dispatched to sync changes)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: ulid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerInput'
+      responses:
+        '200':
+          description: Customer updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Customer'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+    delete:
+      summary: Soft Delete Customer
+      description: Soft delete customer (sync event triggers soft delete in replica services)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: ulid
+      responses:
+        '204':
+          description: Customer soft deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+  
+  /orders:
+    post:
+      summary: Log Sales Order
+      description: |
+        Receives a new sales order from E-commerce service to log against customer history.
+        This is an async webhook - E-commerce dispatches OrderCreated event which triggers this API call.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderInput'
+      responses:
+        '201':
+          description: Order logged successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Order'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
 components:
   securitySchemes:
-    bearerAuth:
+    sanctumAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT
+      bearerFormat: "Sanctum Token"
+      description: |
+        Laravel Sanctum API token authentication.
+        Each service has a unique scoped token for inter-service communication.
+        
+        Example: `Authorization: Bearer <service-token>`
+  
   schemas:
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: ulid
+          example: "01H9X3K7M2J5T8W9QZBNVC4FGE"
+        full_name:
+          type: string
+          maxLength: 255
+          example: "Jane Doe"
+          description: "Encrypted at rest"
+        email:
+          type: string
+          format: email
+          maxLength: 255
+          example: "jane.doe@example.com"
+          description: "Encrypted at rest, unique"
+        shipping_address:
+          type: string
+          example: "123 Main St, Springfield, IL 62701"
+          description: "Encrypted at rest"
+        billing_address:
+          type: string
+          example: "123 Main St, Springfield, IL 62701"
+          description: "Encrypted at rest"
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    
+    CustomerInput:
+      type: object
+      required:
+        - full_name
+        - email
+      properties:
+        full_name:
+          type: string
+          maxLength: 255
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        shipping_address:
+          type: string
+          nullable: true
+        billing_address:
+          type: string
+          nullable: true
+    
     Order:
       type: object
       properties:
@@ -47,20 +267,102 @@ components:
         total_price:
           type: number
           format: float
+          example: 149.99
+        status:
+          type: string
+          enum: [pending, processing, shipped, completed, cancelled]
+    
+    OrderInput:
+      type: object
+      required:
+        - id
+        - customer_id
+        - order_date
+        - total_price
+      properties:
+        id:
+          type: string
+          format: ulid
+        customer_id:
+          type: string
+          format: ulid
+        order_date:
+          type: string
+          format: date-time
+        total_price:
+          type: number
+          format: float
+        status:
+          type: string
+          default: "pending"
+    
+    PaginationMeta:
+      type: object
+      properties:
+        current_page:
+          type: integer
+        from:
+          type: integer
+        to:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        last_page:
+          type: integer
+    
     ErrorResponse:
       type: object
       properties:
+        error:
+          type: string
+          example: "Customer not found"
+        message:
+          type: string
+          example: "Customer 01H9X3K7M2J5T8W9QZBNVC4FGE not found"
+        trace_id:
+          type: string
+          format: uuid
+          description: "Correlation ID for distributed tracing"
+    
+    ValidationErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "The given data was invalid."
         errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: string
-                example: "422"
-              title:
-                type: string
-                example: "Unprocessable Entity"
-              detail:
-                type: string
-                example: "The 'customer_id' field is required."
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          example:
+            email: ["The email field is required.", "The email must be a valid email address."]
+            full_name: ["The full name field is required."]
+  
+  responses:
+    Unauthorized:
+      description: Unauthorized - Invalid or missing Sanctum token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error: "Unauthenticated"
+            message: "Invalid or missing API token"
+    
+    NotFound:
+      description: Resource not found (custom domain exception)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    
+    ValidationError:
+      description: Validation error (Form Request validation failed)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationErrorResponse'

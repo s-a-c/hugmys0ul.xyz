@@ -9,6 +9,35 @@
     "chat.tools.terminal.autoApprove": {
         ".specify/scripts/bash/": true,
         ".specify/scripts/powershell/": true
-    }
+    },
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#2da7f1",
+        "activityBar.background": "#2da7f1",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#fde1f2",
+        "activityBarBadge.foreground": "#15202b",
+        "commandCenter.border": "#e7e7e799",
+        "editorGroup.border": "#2da7f1",
+        "panel.border": "#2da7f1",
+        "sash.hoverBorder": "#2da7f1",
+        "sideBar.border": "#2da7f1",
+        "statusBar.background": "#0f8fdc",
+        "statusBar.border": "#0f8fdc",
+        "statusBar.debuggingBackground": "#dc5c0f",
+        "statusBar.debuggingBorder": "#dc5c0f",
+        "statusBar.debuggingForeground": "#e7e7e7",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#2da7f1",
+        "statusBarItem.remoteBackground": "#0f8fdc",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "tab.activeBorder": "#2da7f1",
+        "titleBar.activeBackground": "#0f8fdc",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.border": "#0f8fdc",
+        "titleBar.inactiveBackground": "#0f8fdc99",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#0f8fdc"
 }
 
