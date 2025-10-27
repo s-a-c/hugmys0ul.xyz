@@ -1,0 +1,13 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'crm'
+    static_configs:
+      - targets: ['crm:80']
+  - job_name: 'ecommerce'
+    static_configs:
+      - targets: ['ecommerce:80']
+  - job_name: 'erp'
+    static_configs:
+      - targets: ['erp:80']
