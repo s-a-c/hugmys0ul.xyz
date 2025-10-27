@@ -23,7 +23,10 @@ install_service() {
   echo "==> ${svc}: scaffolding Laravel app if missing"
   ${RUNNER} run --rm -v "$PWD/${svc_dir}":/app -w /app ${IMG} sh -lc 'test -f artisan || composer create-project laravel/laravel .'
   echo "==> ${svc}: updating composer.json requirements only"
-  ${RUNNER} run --rm -v "$PWD/${svc_dir}":/app -w /app ${IMG} composer require --no-update "${pkgs_common[@]}" "${extra_pkgs[@]:-}"
+  for pkg in "${pkgs_common[@]}" "${extra_pkgs[@]:-}"; do
+    [ -n "$pkg" ] || continue
+    ${RUNNER} run --rm -v "$PWD/${svc_dir}":/app -w /app ${IMG} composer require --no-update --ignore-platform-reqs "$pkg"
+  done
 }
 install_service crm
 install_service ecommerce lunarphp/lunar:^0.11
