@@ -18,30 +18,35 @@ This principle ensures that testing is not just a quality gate but also a learni
 ### 2.2. Test Types
 
 #### 2.2.1. Unit Tests
+
 - Test individual components in isolation
 - Mock external dependencies
 - Fast execution and focused scope
 - Verify business logic and data transformations
 
 #### 2.2.2. Feature Tests
+
 - Test application features from user perspective
 - Use Laravel's testing helpers and assertions
 - Test HTTP requests and responses
 - Verify complete user workflows
 
 #### 2.2.3. Integration Tests
+
 - Test component interactions
 - Database integration testing
 - External service integration
 - End-to-end workflow validation
 
 #### 2.2.4. Browser Tests
+
 - Use Laravel Dusk for browser automation
 - Test JavaScript interactions
 - Verify UI behavior and accessibility
 - Test responsive design and cross-browser compatibility
 
 #### 2.2.5. Architecture Tests
+
 - Enforce architectural boundaries
 - Verify namespace organization
 - Test class dependencies and relationships
@@ -52,6 +57,7 @@ This principle ensures that testing is not just a quality gate but also a learni
 ### 3.1. Primary Testing Framework
 
 **Pest** is the preferred testing framework:
+
 - Modern, expressive syntax
 - Excellent test organization
 - Built-in support for Laravel
@@ -76,7 +82,7 @@ This principle ensures that testing is not just a quality gate but also a learni
 
 ### 4.1. Directory Structure
 
-```
+```text
 tests/
 ├── Unit/                    # Unit tests for individual components
 ├── Feature/                 # Feature tests for application behavior
@@ -600,18 +606,21 @@ test('invoice_service_creates_invoice_with_correct_calculations', function () {
 ### 14.1. Common Testing Issues
 
 **Flaky Tests**:
+
 - Identify and fix race conditions
 - Use proper waiting mechanisms
 - Isolate tests from external dependencies
 - Use deterministic test data
 
 **Slow Tests**:
+
 - Optimize database queries in tests
 - Use in-memory database when possible
 - Mock expensive operations
 - Parallelize test execution
 
 **Complex Test Setup**:
+
 - Use traits for reusable setup logic
 - Create helper methods for common scenarios
 - Use factories and datasets effectively

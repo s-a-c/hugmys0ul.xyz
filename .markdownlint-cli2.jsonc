@@ -1,0 +1,44 @@
+{
+  // markdownlint-cli2 runner configuration
+  // Centralizes globs and ignores to keep commands simple and reproducible.
+  "config": ".markdownlint.jsonc",
+
+  // Files to lint (JSONC allows comments)
+  "globs": [
+    "**/*.md",
+    "**/*.mdx",
+
+    // Exclusions - build and caches
+    "!**/node_modules/**",
+    "!**/dist/**",
+    "!**/build/**",
+    "!**/.next/**",
+    "!**/.out/**",
+    "!**/coverage/**",
+    "!**/.cache/**",
+    "!**/.turbo/**",
+    "!**/.vercel/**",
+
+    // Static site/doc tool caches
+    "!**/.docusaurus/**",
+    "!**/.vitepress/**",
+    "!**/.astro/**",
+
+    // Composer vendors (monorepo)
+    "!**/vendor/**",
+    "!services/**/vendor/**",
+
+    // Auto-generated prompt content
+    "!.claude/**",
+    "!.codex/**",
+
+    // Changelogs are often upstream-generated
+    "!CHANGELOG*.md",
+
+    // Git internals
+    "!.git/**",
+
+    // Generated specifications (preserve upstream formatting)
+    "!.specify/specs/**"
+  ]
+}

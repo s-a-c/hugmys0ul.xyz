@@ -1,0 +1,137 @@
+openapi: 3.0.0
+info:
+  title: E-commerce Service API
+  version: v1
+  description: API for managing products, customers, and orders in the E-commerce service.
+security:
+  - bearerAuth: []
+paths:
+  /api/v1/products:
+    post:
+      summary: Create or Update Product
+      description: Receives product data from the ERP to create or update a product listing.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: Product updated successfully.
+        '201':
+          description: Product created successfully.
+        '422':
+          description: Unprocessable Entity (Validation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/v1/products/{sku}/stock:
+    put:
+      summary: Update Stock Level
+      parameters:
+        - name: sku
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+      responses:
+        '200':
+          description: Stock updated successfully.
+        '422':
+          description: Unprocessable Entity (Validation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/v1/customers:
+    post:
+      summary: Create or Update Customer
+      description: Receives customer data from the CRM.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: Customer updated successfully.
+        '201':
+          description: Customer created successfully.
+        '422':
+          description: Unprocessable Entity (Validation Error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Product:
+      type: object
+      properties:
+        sku:
+          type: string
+          maxLength: 255
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+            format: url
+        base_price:
+          type: number
+          format: float
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: ulid
+        full_name:
+          type: string
+          maxLength: 255
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        shipping_address:
+          type: string
+        billing_address:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                example: "422"
+              title:
+                type: string
+                example: "Unprocessable Entity"
+              detail:
+                type: string
+                example: "The 'email' field is required."

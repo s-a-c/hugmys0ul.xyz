@@ -1,0 +1,47 @@
+# General build and cache directories
+
+**/node_modules/
+**/dist/
+**/build/
+**/.next/
+**/.out/
+**/coverage/
+**/.cache/
+**/.turbo/
+**/.vercel/
+
+# Static site/documentation tooling caches (common)
+
+**/.docusaurus/
+**/.vitepress/
+**/.astro/
+
+# PHP/Laravel and compiled assets (monorepo services)
+
+**/vendor/
+**/public/build/
+**/storage/framework/
+**/bootstrap/cache/
+
+# Generated changelogs
+
+CHANGELOG*.md
+
+# Auto-generated and prompt directories (exclude from lint to avoid churn)
+
+.claude/
+.claude/**
+.codex/
+.codex/**
+
+# Misc system files
+
+**/.DS_Store
+
+# Vendor directories (robust patterns)
+
+vendor/
+vendor/**
+**/vendor/**
+services/*/vendor/**
+services/**/vendor/**

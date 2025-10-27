@@ -1,6 +1,6 @@
-- this project is intended to be a monorepo for a larvel 12 livewire volt, with filament 4 project. also in the project will be embedded solutions, 
-   - https://github.com/aureuserp/aureuserp
-   - https://github.com/bagisto/bagisto
-   - the main application should use the others via strict SOA ReSTful api
-   - the project should use laravel sail, with podmanAnd podman-compe replacining docker/docker-compose
-   - use postgresql as the db
+- this project is intended to be a monorepo for a larvel 12 livewire volt, with filament 4 project. also in the project will be embedded solutions,
+  - <https://github.com/aureuserp/aureuserp>
+  - <https://github.com/bagisto/bagisto>
+  - the main application should use the others via strict SOA ReSTful api
+  - the project should use laravel sail, with podmanAnd podman-compe replacining docker/docker-compose
+  - use postgresql as the db

@@ -203,10 +203,13 @@ find . -name "*.php" -exec grep -l "pattern" {} \; | head -20
 ### 5.1. Local Development Setup
 
 1. Start the development environment:
+
 ```bash
 composer dev
 ```
+
 This runs:
+
 - Laravel development server
 - Queue worker for background jobs
 - Real-time log monitoring
@@ -215,6 +218,7 @@ This runs:
 ### 5.2. Building for Production
 
 Before submitting code:
+
 1. Run tests: `php artisan test`
 2. Format code: `composer pint`
 3. Build assets: `npm run build`
@@ -272,12 +276,14 @@ Before submitting code:
 ### 7.1. Common Git Issues
 
 **Merge Conflicts:**
+
 - Use `git status` to identify conflicted files
 - Resolve conflicts systematically
 - Use `git add` to mark resolved files
 - Test thoroughly before committing
 
 **Commit Issues:**
+
 - Use `git commit --amend` for minor changes to last commit
 - Use `git reset` to undo commits (with caution)
 - Use `git revert` to create reverse commits
@@ -285,12 +291,14 @@ Before submitting code:
 ### 7.2. Terminal Issues
 
 **Command Failures:**
+
 - Check command syntax and permissions
 - Verify file paths and existence
 - Use `man` pages for command help
 - Check system resources and limits
 
 **Performance Issues:**
+
 - Monitor system resources
 - Use appropriate tools for large datasets
 - Implement proper error handling
@@ -299,12 +307,14 @@ Before submitting code:
 ### 7.3. Workflow Optimization
 
 **Efficiency Tips:**
+
 - Automate repetitive tasks
 - Use aliases for common commands
 - Implement proper error handling
 - Document custom workflows
 
 **Collaboration Best Practices:**
+
 - Communicate changes clearly
 - Use descriptive commit messages
 - Review code thoroughly
@@ -313,6 +323,7 @@ Before submitting code:
 ## 8. See Also
 
 ### Related Guidelines
+
 - **[Development Standards](../PHP-Laravel/020-development-standards.md)** - Code quality and architecture standards
 - **[Testing Standards](../PHP-Laravel/030-testing-standards.md)** - Testing requirements and practices
 - **[Documentation Standards](../Documentation/010-documentation-standards.md)** - Commit message and PR documentation standards
@@ -322,30 +333,35 @@ Before submitting code:
 ### Workflow Decision Guide for Junior Developers
 
 #### "I'm ready to commit my changes - what's the proper process?"
+
 1. **Review Changes**: Follow section 3.1 commit message format requirements
 2. **Write Message**: Use section 3.2 Conventional Commits specification
 3. **Multi-line Format**: Apply section 3.1.5 multi-line CLI format with `-m` flags
 4. **Example**: Reference section 3.3 for proper commit structure
 
 #### "I need to create a new branch - what naming convention should I use?"
+
 - **Strategy**: Follow section 3.4 GitHub flow branching strategy
 - **Branch from**: Always create feature branches from `main`
 - **Naming**: Use descriptive names like `feature/invoice-automation` or `fix/payment-validation`
 - **Documentation**: See [Documentation Standards](../Documentation/010-documentation-standards.md) for PR descriptions
 
 #### "I'm working in terminal - how do I manage sessions efficiently?"
+
 - **Session Optimization**: Follow section 4.1 for running commands in one terminal
 - **New Terminal Rules**: Apply section 4.2 guidelines (only if no active processes)
 - **Resource Management**: Use section 4.4 for tracking and cleanup
 - **Command Tools**: Leverage section 4.5 text processing tools (awk, sed, grep)
 
 #### "I'm processing large files - how do I avoid terminal issues?"
+
 - **Buffer Management**: Follow section 4.5.2 command length optimization
 - **Safety Practices**: Apply terminal safety practices (test on small datasets first)
 - **Command Segmentation**: Break large operations into smaller steps
 - **Output Control**: Use `head`, `tail`, or redirect to files for large outputs
 
 #### "I'm ready to submit a pull request - what should I check?"
+
 1. **Code Quality**: Run tests using section 5.2 building process
 2. **Standards**: Verify [Development Standards](../PHP-Laravel/020-development-standards.md) compliance
 3. **Documentation**: Ensure [Documentation Standards](../Documentation/010-documentation-standards.md) are met

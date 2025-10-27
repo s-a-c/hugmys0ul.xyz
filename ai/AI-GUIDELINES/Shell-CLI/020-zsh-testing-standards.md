@@ -9,11 +9,13 @@ All ZSH test, performance, and QA scripts **MUST** be executable with `zsh -f` (
 ### 2.1. The Prime Directive: `zsh -f` Compatibility
 
 Every test script **MUST** pass when launched individually using:
+
 ```bash
 zsh -f /path/to/test.zsh
 ```
 
 This means:
+
 - No dependency on `.zshenv`, `.zshrc`, or any startup files.
 - No assumptions about the user's environment.
 - Explicit setup of all required state.
@@ -33,6 +35,7 @@ Each test is a standalone program that happens to test shell configuration, NOT 
 ## 3. Test Categories and Rules
 
 ### 3.1. Unit Tests
+
 **Requirement Level**: MANDATORY `zsh -f` compatibility
 
 ```zsh
@@ -54,6 +57,7 @@ source "$REPO_ROOT/modules/specific-module.zsh" || exit 1
 ```
 
 ### 3.2. Integration Tests
+
 **Requirement Level**: MANDATORY `zsh -f` compatibility with controlled sourcing
 
 ```zsh
@@ -111,9 +115,9 @@ assert_equals() {
 
 Prefer ZSH built-in commands and parameter expansion over external commands like `grep`, `sed`, `awk`, and `date` to ensure portability and performance.
 
-*   **Instead of `grep`:** `[[ "$var" == *pattern* ]]`
-*   **Instead of `sed`:** `${var//old/new}`
-*   **Instead of `date`:** `typeset -F SECONDS` or `zmodload zsh/datetime`
+- **Instead of `grep`:** `[[ "$var" == *pattern* ]]`
+- **Instead of `sed`:** `${var//old/new}`
+- **Instead of `date`:** `typeset -F SECONDS` or `zmodload zsh/datetime`
 
 ## 5. CI/CD Integration
 
@@ -131,6 +135,6 @@ Integrate `zsh -f` test execution directly into the CI/CD pipeline (e.g., GitHub
 
 The `zsh -f` approach eliminates shell startup overhead, leading to significant performance improvements:
 
-*   **Startup Overhead:** Reduced from ~45 seconds to 0 seconds for a 137-test suite.
-*   **Total Runtime:** Reduced from over 60 seconds to under 10 seconds.
-*   **Reliability:** 100% reduction in timeout failures in CI.
+- **Startup Overhead:** Reduced from ~45 seconds to 0 seconds for a 137-test suite.
+- **Total Runtime:** Reduced from over 60 seconds to under 10 seconds.
+- **Reliability:** 100% reduction in timeout failures in CI.
